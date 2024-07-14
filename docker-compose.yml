@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: streamlit_app
+    ports:
+      - "8501:8501"
+    environment:
+      - PYTHONUNBUFFERED=1
+    develop:
+      watch:
+        - path: ./code
+          target: /app/code
+          action: sync
+        - path: ./requirements.txt
+          action: rebuild
