@@ -7,7 +7,7 @@ def main():
         #st.write("Why hello there")
         
         # Example usage of Supabase client
-        response = supabase.table("football_leagues").select("league_name").execute()
+        response = supabase.table("football_leagues").select("*").execute()
         #response = SUPABASE_URL
         
         st.write(response.data)
