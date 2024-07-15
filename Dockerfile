@@ -5,7 +5,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copy the requirements file into the container
-#COPY requirements.txt .
+COPY ./requirements.txt ./
 
 # Install virtualenv
 #RUN pip install virtualenv
@@ -14,14 +14,15 @@ WORKDIR /app
 #RUN virtualenv venv
 
 # Install any needed packages specified in requirements.txt
-#RUN ./venv/bin/pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container
-COPY . .
+COPY ./src ./src
+COPY ./.env ./.env
 
-RUN pip install -r requirements.txt
+#RUN pip install -r requirements.txt
 
 EXPOSE 8501
 
 # Run the application
-ENTRYPOINT ["streamlit", "run", "code/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "src/app.py", "--server.port=8501", "--server.address=0.0.0.0"]

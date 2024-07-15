@@ -12,8 +12,6 @@ services:
       - PYTHONUNBUFFERED=1
     develop:
       watch:
-        - path: ./code
-          target: /app/code
+        - path: ./src
+          target: /app/src
           action: sync
-        - path: ./requirements.txt
-          action: rebuild
